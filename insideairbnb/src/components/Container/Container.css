@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.map {
+  width: 70%;
+}
+
+.sidebar {
+  width: 30%;
+}
