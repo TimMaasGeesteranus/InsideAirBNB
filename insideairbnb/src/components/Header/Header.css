@@ -1,0 +1,12 @@
+.spaceBehindHeader {
+  height: 100px;
+}
+
+.header {
+  height: 100px;
+  background: #004ab3;
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
