@@ -11,6 +11,7 @@ import Pin from "./Pin/Pin";
 import { getMarkers } from "../../redux/actions/api/getData";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
+import Description from "./Description/Description";
 
 const Map = (props) => {
     const [viewState] = useState({
@@ -62,17 +63,7 @@ const Map = (props) => {
 
 
                 {popup && (
-                    <Popup
-                        anchor="top"
-                        longitude={Number(popup.longitude)}
-                        latitude={Number(popup.latitude)}
-                        closeOnClick={false}
-                        onClose={() => setPopup(null)}
-                    >
-                        <div>
-                            Well hello there
-                        </div>
-                    </Popup>
+                    <Description marker={popup} setPopup={setPopup}/>
                 )}
             </MapGL>
         </div >
