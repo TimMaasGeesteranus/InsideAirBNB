@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Popup } from "react-map-gl"
 
 const Description = (props) => {
-   
+
     return (
         <Popup
             anchor="top"

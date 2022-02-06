@@ -63,7 +63,7 @@ const Map = (props) => {
 
 
                 {popup && (
-                    <Description marker={popup} setPopup={setPopup}/>
+                    <Description marker={popup} setPopup={setPopup} />
                 )}
             </MapGL>
         </div >

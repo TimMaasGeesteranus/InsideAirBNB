@@ -17,7 +17,9 @@ namespace InsideAirBNB_API.Controllers
         [HttpGet]
         public IActionResult GetListings()
         {
-            var listings = _appDbContext.SummaryListings.Take(20);
+            var listings = _appDbContext.SummaryListings.Take(100);
+            //var listings = _appDbContext.SummaryListings;
+
 
             return Ok(listings);
         }
