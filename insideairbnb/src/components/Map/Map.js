@@ -6,10 +6,14 @@ import MapGL, {
     ScaleControl,
     Popup,
 } from "react-map-gl"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pin from "./Pin/Pin";
+import { getMarkers } from "../../redux/actions/api/getData";
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 
-const Map = () => {
+
+const Map = (props) => {
     const [viewState] = useState({
         longitude: 4.895168,
         latitude: 52.370216,
@@ -20,6 +24,14 @@ const Map = () => {
         latitude: 52.370216,
     })
     const [popup, setPopup] = useState(null);
+
+    useEffect(() => {
+        async function getMarkers() {
+            props.getMarkers();
+        }
+
+        getMarkers();
+    })
 
     function clickedMarker(data) {
         setPopup({ "longitude": 4.895168, "latitude": 52.370216 })
@@ -64,4 +76,15 @@ const Map = () => {
     )
 }
 
-export default Map;
+function mapStateToProps(state) {
+    return {
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getMarkers: getMarkers
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);

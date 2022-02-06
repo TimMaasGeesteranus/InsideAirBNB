@@ -1,4 +1,4 @@
-export function getPersonalData(accessToken) {
+export function getMarkers(accessToken) {
     return (dispatch) => {
 
         fetch(`${process.env.REACT_APP_API_ADRESS}/listing`, {
