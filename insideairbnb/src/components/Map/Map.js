@@ -4,8 +4,10 @@ import MapGL, {
     NavigationControl,
     FullscreenControl,
     ScaleControl,
+    Popup,
 } from "react-map-gl"
 import { useState } from "react";
+import Pin from "./Pin/Pin";
 
 const Map = () => {
     const [viewState] = useState({
@@ -17,6 +19,12 @@ const Map = () => {
         longitude: 4.895168,
         latitude: 52.370216,
     })
+    const [popup, setPopup] = useState(null);
+
+    function clickedMarker(data) {
+        console.log("klik")
+        setPopup({ "longitude": 4.895168, "latitude": 52.370216 })
+    }
 
     return (
         <div className="map">
@@ -33,10 +41,28 @@ const Map = () => {
                     {...marker}
                     key={`marker-${1}`}
                     anchor="bottom"
+                    onDrag={(console.log("klik"))}
                 >
+                    <div onClick={() => clickedMarker()}>
+                        <Pin />
+                    </div>
                 </Marker>
+
+                {popup && (
+                    <Popup
+                        anchor="top"
+                        longitude={Number(popup.longitude)}
+                        latitude={Number(popup.latitude)}
+                        closeOnClick={false}
+                        onClose={() => setPopup(null)}
+                    >
+                        <div>
+                            Well hello there
+                        </div>
+                    </Popup>
+                )}
             </MapGL>
-        </div>
+        </div >
     )
 }
 
