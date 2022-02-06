@@ -3,10 +3,10 @@ const initialState = {
 
 function reducer(state = initialState, action) {
     switch (action.type) {
-        case "voorbeeld":
+        case "GET_MARKERS_SUCCESS":
             return {
                 ...state,
-                value: action.data
+                markers: action.data
             };     
         default:
             return state;

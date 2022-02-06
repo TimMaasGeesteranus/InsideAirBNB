@@ -1,3 +1,5 @@
+import { getMarkersSuccess } from "../action";
+
 export function getMarkers(accessToken) {
     return (dispatch) => {
 
@@ -10,7 +12,7 @@ export function getMarkers(accessToken) {
                 return response.json()
             })
             .then((data) => {
-                console.log(data);
+                dispatch(getMarkersSuccess(data));
             })
             .catch(e => {
                 console.log("oeps");
