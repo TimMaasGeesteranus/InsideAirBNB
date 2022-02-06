@@ -22,7 +22,6 @@ const Map = () => {
     const [popup, setPopup] = useState(null);
 
     function clickedMarker(data) {
-        console.log("klik")
         setPopup({ "longitude": 4.895168, "latitude": 52.370216 })
     }
 
@@ -41,7 +40,6 @@ const Map = () => {
                     {...marker}
                     key={`marker-${1}`}
                     anchor="bottom"
-                    onDrag={(console.log("klik"))}
                 >
                     <div onClick={() => clickedMarker()}>
                         <Pin />
