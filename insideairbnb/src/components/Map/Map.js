@@ -6,23 +6,31 @@ import MapGL, {
     ScaleControl,
     Popup,
 } from "react-map-gl"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pin from "./Pin/Pin";
+import { getMarkers } from "../../redux/actions/api/getData";
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import Description from "./Description/Description";
 
-const Map = () => {
+const Map = (props) => {
     const [viewState] = useState({
         longitude: 4.895168,
         latitude: 52.370216,
         zoom: 10,
     })
-    const [marker] = useState({
-        longitude: 4.895168,
-        latitude: 52.370216,
-    })
     const [popup, setPopup] = useState(null);
 
-    function clickedMarker(data) {
-        setPopup({ "longitude": 4.895168, "latitude": 52.370216 })
+    useEffect(() => {
+        async function getMarkers() {
+            props.getMarkers();
+        }
+
+        getMarkers();
+    }, [])
+
+    function clickedMarker(marker) {
+        setPopup(marker)
     }
 
     return (
@@ -36,32 +44,42 @@ const Map = () => {
                 <NavigationControl position="top-left" />
                 <ScaleControl />
 
-                <Marker
-                    {...marker}
-                    key={`marker-${1}`}
-                    anchor="bottom"
-                >
-                    <div onClick={() => clickedMarker()}>
-                        <Pin />
+                {props.markers != undefined &&
+                    <div>
+                        {props.markers.map(marker => (
+                            <Marker
+                                key={`marker-${marker.id}`}
+                                longitude={marker.longitude}
+                                latitude={marker.latitude}
+                                anchor="bottom"
+                            >
+                                <div onClick={() => clickedMarker(marker)}>
+                                    <Pin />
+                                </div>
+                            </Marker>
+                        ))}
                     </div>
-                </Marker>
+                }
+
 
                 {popup && (
-                    <Popup
-                        anchor="top"
-                        longitude={Number(popup.longitude)}
-                        latitude={Number(popup.latitude)}
-                        closeOnClick={false}
-                        onClose={() => setPopup(null)}
-                    >
-                        <div>
-                            Well hello there
-                        </div>
-                    </Popup>
+                    <Description marker={popup} setPopup={setPopup} />
                 )}
             </MapGL>
         </div >
     )
 }
 
-export default Map;
+function mapStateToProps(state) {
+    return {
+        markers: state.data.markers
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getMarkers: getMarkers
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);
