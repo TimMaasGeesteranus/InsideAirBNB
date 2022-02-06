@@ -12,16 +12,11 @@ import { getMarkers } from "../../redux/actions/api/getData";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 
-
 const Map = (props) => {
     const [viewState] = useState({
         longitude: 4.895168,
         latitude: 52.370216,
         zoom: 10,
-    })
-    const [marker] = useState({
-        longitude: 4.895168,
-        latitude: 52.370216,
     })
     const [popup, setPopup] = useState(null);
 
@@ -31,10 +26,10 @@ const Map = (props) => {
         }
 
         getMarkers();
-    })
+    }, [])
 
-    function clickedMarker(data) {
-        setPopup({ "longitude": 4.895168, "latitude": 52.370216 })
+    function clickedMarker(marker) {
+        setPopup(marker)
     }
 
     return (
@@ -48,15 +43,23 @@ const Map = (props) => {
                 <NavigationControl position="top-left" />
                 <ScaleControl />
 
-                <Marker
-                    {...marker}
-                    key={`marker-${1}`}
-                    anchor="bottom"
-                >
-                    <div onClick={() => clickedMarker()}>
-                        <Pin />
+                {props.markers != undefined &&
+                    <div>
+                        {props.markers.map(marker => (
+                            <Marker
+                                key={`marker-${marker.id}`}
+                                longitude={marker.longitude}
+                                latitude={marker.latitude}
+                                anchor="bottom"
+                            >
+                                <div onClick={() => clickedMarker(marker)}>
+                                    <Pin />
+                                </div>
+                            </Marker>
+                        ))}
                     </div>
-                </Marker>
+                }
+
 
                 {popup && (
                     <Popup
@@ -78,6 +81,7 @@ const Map = (props) => {
 
 function mapStateToProps(state) {
     return {
+        markers: state.data.markers
     }
 }
 
