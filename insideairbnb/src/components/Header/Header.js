@@ -5,7 +5,14 @@ const Header = () => {
         <div>
             <div className="spaceBehindHeader" />
             <div className="header">
-                <p>Header</p>
+
+                <div className="headerTitle">
+                    InsideAirBNB
+                </div>
+                <div className="headerText">
+                    Login
+                </div>
+
             </div>
         </div>
 
