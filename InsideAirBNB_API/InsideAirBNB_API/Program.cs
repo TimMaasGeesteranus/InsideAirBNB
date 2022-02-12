@@ -22,6 +22,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddAuthentication("Bearer")
+    .AddIdentityServerAuthentication("Bearer", options =>
+    {
+        options.ApiName = "weatherapi";
+        options.Authority = "https://localhost:3002";
+    });
+
 builder.Services.AddDbContext<AppDbContext>((DbContextOptionsBuilder options) =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("InsideAirBNB"));
@@ -40,7 +48,9 @@ app.UseHttpsRedirection();
 
 app.UseCors("allowLocalhost");
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

@@ -1,5 +1,3 @@
-using IdentityServer4.Models;
-using IdentityServer4.Test;
 using InsideAirBNB_Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,7 +31,3 @@ app.UseIdentityServer();
 
 app.Run();
 
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

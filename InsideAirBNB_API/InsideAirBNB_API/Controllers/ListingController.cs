@@ -1,10 +1,12 @@
 ﻿using InsideAirBNB_API.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsideAirBNB_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class ListingController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
