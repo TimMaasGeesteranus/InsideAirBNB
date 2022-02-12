@@ -16,6 +16,8 @@ builder.Services.AddIdentityServer()
     .AddTestUsers(Config.Users)
     .AddDeveloperSigningCredential();
 
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,10 +26,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
 app.UseIdentityServer();
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
 
 app.Run();
 
