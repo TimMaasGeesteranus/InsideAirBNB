@@ -9,7 +9,7 @@ builder.Services.AddCors(options =>
                       builder =>
                       {
                           builder
-                            .WithOrigins("http://localhost:3000")
+                            .AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                       });
@@ -27,7 +27,8 @@ builder.Services.AddAuthentication("Bearer")
     .AddIdentityServerAuthentication("Bearer", options =>
     {
         options.ApiName = "weatherapi";
-        options.Authority = "https://localhost:3002";
+        options.Authority = "https://localhost:3004";
+        options.LegacyAudienceValidation = true;
     });
 
 builder.Services.AddDbContext<AppDbContext>((DbContextOptionsBuilder options) =>

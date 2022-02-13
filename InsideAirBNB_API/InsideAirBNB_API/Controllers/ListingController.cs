@@ -1,4 +1,5 @@
 ﻿using InsideAirBNB_API.Context;
+using InsideAirBNB_API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,16 @@ namespace InsideAirBNB_API.Controllers
 
 
             return Ok(listings);
+        }
+
+        [Authorize]
+        [HttpGet("/test")]
+        public IActionResult GetTest()
+        {
+            Listing listing = new();
+            listing.Description = "A very beatiful place to live";
+            listing.Name = "My beatiful house";
+            return Ok(listing);
         }
     }
 }
