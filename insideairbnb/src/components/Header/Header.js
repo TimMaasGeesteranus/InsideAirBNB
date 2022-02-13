@@ -1,6 +1,9 @@
+import { useAuth } from "oidc-react/build/src/useAuth";
 import "./Header.css";
 
 const Header = () => {
+    const auth = useAuth();
+
     return (
         <div>
             <div className="spaceBehindHeader" />
@@ -9,13 +12,17 @@ const Header = () => {
                 <div className="headerTitle">
                     InsideAirBNB
                 </div>
-                <div className="headerText">
-                    Login
-                </div>
 
+                {auth && auth.userData &&
+                    <div onClick={() => auth.signOut()} className="headerText">
+                        Logout
+                    </div>}
+                {(!auth || !auth.userData) &&
+                    <div onClick={() => auth.signIn()} className="headerText">
+                        Login
+                    </div>}
             </div>
         </div>
-
     )
 }
 

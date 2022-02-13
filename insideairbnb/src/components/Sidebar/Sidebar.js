@@ -10,7 +10,7 @@ const Sidebar = () => {
             <p>Amsterdam</p>
             <button onClick={() => console.log(auth.userData)}>auth.userdata</button>
 
-            {auth && auth.userData && <p>ingelogd</p>}
+            {auth && auth.userData && <p>ingelogd!</p>}
             {(!auth || !auth.userData) && <p>uitgelogd</p>}
 
 
