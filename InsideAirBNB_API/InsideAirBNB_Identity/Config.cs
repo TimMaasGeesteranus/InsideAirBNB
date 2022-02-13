@@ -94,25 +94,31 @@ namespace InsideAirBNB_Identity
         public static IEnumerable<Client> Clients =>
           new[]
           {
-        // m2m client credentials flow client
+        // the API
         new Client
         {
           ClientId = "m2m.client",
           ClientName = "Client Credentials Client",
 
-          AllowedGrantTypes = GrantTypes.ClientCredentials,
+          AllowedGrantTypes = GrantTypes.ImplicitAndClientCredentials,
+
+
+          AllowAccessTokensViaBrowser = true,
           ClientSecrets = {new Secret("SuperSecretPassword".Sha256())},
 
           AllowedScopes = {"weatherapi.read", "weatherapi.write"}
         },
 
-        // interactive client using code flow + pkce
+        // the React App
         new Client
         {
           ClientId = "interactive",
           ClientSecrets = {new Secret("SuperSecretPassword".Sha256())},
 
+          //AllowedGrantTypes = GrantTypes.ClientCredentials,
           AllowedGrantTypes = GrantTypes.Code,
+
+          AllowedCorsOrigins = {"http://localhost:3000" },
 
           RedirectUris = {"http://localhost:3000"},
           FrontChannelLogoutUri = "https://localhost:5444/signout-oidc",
