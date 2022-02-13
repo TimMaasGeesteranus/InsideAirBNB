@@ -114,7 +114,7 @@ namespace InsideAirBNB_Identity
 
           AllowedGrantTypes = GrantTypes.Code,
 
-          RedirectUris = {"https://localhost:5444/signin-oidc"},
+          RedirectUris = {"http://localhost:3000"},
           FrontChannelLogoutUri = "https://localhost:5444/signout-oidc",
           PostLogoutRedirectUris = {"https://localhost:5444/signout-callback-oidc"},
 

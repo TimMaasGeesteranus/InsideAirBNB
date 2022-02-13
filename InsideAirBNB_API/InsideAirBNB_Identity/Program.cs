@@ -2,6 +2,18 @@ using InsideAirBNB_Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "allowLocalhost",
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyMethod();
+                            //.WithOrigins("http://localhost:3000");
+                      });
+});
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -20,6 +32,8 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -31,6 +45,9 @@ app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseCors("allowLocalhost");
+
 app.UseIdentityServer();
 app.UseAuthorization();
 

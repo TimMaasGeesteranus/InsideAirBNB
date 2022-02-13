@@ -6,7 +6,7 @@ namespace InsideAirBNB_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    //[Authorize]
     public class ListingController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
