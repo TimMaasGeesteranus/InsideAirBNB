@@ -1,6 +1,7 @@
 .menuContainer {
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
 }
 
 .menuItem {
@@ -13,7 +14,7 @@
 
 .menuItem:hover {
   background: #0f325a;
-  text-decoration: underline;
+  cursor: pointer;
 }
 
 .menuItemClicked {

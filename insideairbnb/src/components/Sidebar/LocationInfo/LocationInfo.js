@@ -5,7 +5,6 @@ const LocationInfo = (props) => {
 
     return (
         <div>
-            info
             {props.marker.name}
         </div>
     )
