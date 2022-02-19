@@ -12,6 +12,7 @@ import { getMarkers } from "../../redux/actions/api/getData";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import Description from "./Description/Description";
+import { useNavigate } from "react-router-dom";
 
 const Map = (props) => {
     const [viewState] = useState({
@@ -20,6 +21,8 @@ const Map = (props) => {
         zoom: 10,
     })
     const [popup, setPopup] = useState(null);
+    let navigate = useNavigate();
+
 
     useEffect(() => {
         async function getMarkers() {
@@ -30,7 +33,8 @@ const Map = (props) => {
     }, [])
 
     function clickedMarker(marker) {
-        setPopup(marker)
+        setPopup(marker);
+        navigate("/info");
     }
 
     return (
