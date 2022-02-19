@@ -9,7 +9,7 @@ builder.Services.AddCors(options =>
                       builder =>
                       {
                           builder
-                            .WithOrigins("http://localhost:3000")
+                            .AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                       });
@@ -21,6 +21,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddAuthentication("Bearer")
+    .AddIdentityServerAuthentication("Bearer", options =>
+    {
+        options.ApiName = "weatherapi";
+        options.Authority = "https://localhost:3004";
+        options.LegacyAudienceValidation = true;
+    });
 
 builder.Services.AddDbContext<AppDbContext>((DbContextOptionsBuilder options) =>
 {
@@ -40,7 +49,9 @@ app.UseHttpsRedirection();
 
 app.UseCors("allowLocalhost");
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

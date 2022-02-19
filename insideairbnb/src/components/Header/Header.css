@@ -1,12 +1,33 @@
 .spaceBehindHeader {
-  height: 100px;
+  height: 82px;
 }
 
 .header {
-  height: 100px;
-  background: #004ab3;
-  color: white;
+  height: 80px;
   position: fixed;
   width: 100%;
   top: 0;
+  border-bottom: 2px solid ;
+  border-color: #0f325a ;
+}
+
+.headerTitle {
+  color: #0f325a;
+  font-size: 30px;
+  font-weight: bold;
+  float: left;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  margin-left: 20px;
+}
+
+.headerText {
+  color: #1396d9;
+  font-size: 20px;
+  float: right;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+  margin-right: 20px;
 }
