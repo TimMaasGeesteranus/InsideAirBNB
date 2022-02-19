@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import Description from "./Description/Description";
 import { useNavigate } from "react-router-dom";
+import { setCurrentMarker } from "../../redux/actions/action";
 
 const Map = (props) => {
     const [viewState] = useState({
@@ -34,6 +35,7 @@ const Map = (props) => {
 
     function clickedMarker(marker) {
         setPopup(marker);
+        props.setCurrentMarker(marker);
         navigate("/info");
     }
 
@@ -65,7 +67,6 @@ const Map = (props) => {
                     </div>
                 }
 
-
                 {popup && (
                     <Description marker={popup} setPopup={setPopup} />
                 )}
@@ -82,7 +83,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getMarkers: getMarkers
+        getMarkers: getMarkers,
+        setCurrentMarker: setCurrentMarker
     }, dispatch)
 }
 

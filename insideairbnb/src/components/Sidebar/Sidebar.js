@@ -8,7 +8,6 @@ import Menu from "./Menu/Menu";
 import LocationInfo from "./LocationInfo/LocationInfo";
 
 const Sidebar = () => {
-
     return (
         <div className="sidebar">
             <Menu />

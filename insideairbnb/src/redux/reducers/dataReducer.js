@@ -7,7 +7,12 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 markers: action.data
-            };     
+            };
+        case "SET_CURRENT_MARKER":
+            return {
+                ...state,
+                currentMarker: action.marker
+            }
         default:
             return state;
     }
