@@ -1,0 +1,35 @@
+.blueText {
+  color: #0f325a;
+}
+
+.lightblueText {
+  color: #1396d9;
+}
+
+.bigText {
+  font-size: 24px;
+}
+
+.mediumText {
+  font-size: 18px;
+}
+
+.smallText {
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+.alignLeft {
+  text-align: left;
+}
