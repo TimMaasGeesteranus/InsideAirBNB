@@ -11,12 +11,14 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <Menu />
-            <Routes>
-                <Route exact path="/" element={<Data />} />
-                <Route path="/charts" element={<Charts />} />
-                <Route path="/info" element={<LocationInfo />} />
-            </Routes>
-        </div>
+            <div className="sidebarDisplay">
+                <Routes>
+                    <Route exact path="/" element={<Data />} />
+                    <Route path="/charts" element={<Charts />} />
+                    <Route path="/info" element={<LocationInfo />} />
+                </Routes>
+            </div>
+        </div >
     )
 }
 

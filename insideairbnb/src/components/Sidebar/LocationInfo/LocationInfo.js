@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import "./LocationInfo.css";
 
 const LocationInfo = (props) => {
 
@@ -15,28 +14,36 @@ const LocationInfo = (props) => {
 
             <hr />
 
-            <div className="bigText">
+            <div className="bigText lightblueText">
                 €{props.marker.price} per night
             </div>
 
             <br />
-            <div className="mediumText">
-                Minimum amount of nights:
-                <div className="floatRight bold">
-                    {props.marker.minimumNights}
-                </div>
+
+            <div className="smallText">
+                Minimum amount of nights
+
             </div>
-            <div className="mediumText">
-                Roomtype:
-                <div className="floatRight bold">
-                    {props.marker.roomType}
-                </div>
+            <div className="mediumText bold">
+                {props.marker.minimumNights}
             </div>
-            <div className="mediumText">
-                Neighbourhood:
-                <div className="floatRight bold">
-                    {props.marker.neighbourhood}
-                </div>
+
+            <br />
+
+            <div className="smallText">
+                Roomtype
+            </div>
+            <div className="mediumText bold">
+                {props.marker.roomType}
+            </div>
+
+            <br />
+
+            <div className="smallText">
+                Neighbourhood
+            </div>
+            <div className="mediumText bold">
+                {props.marker.neighbourhood}
             </div>
         </div>
     )
