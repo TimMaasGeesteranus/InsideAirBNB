@@ -4,7 +4,6 @@ import MapGL, {
     NavigationControl,
     FullscreenControl,
     ScaleControl,
-    Popup,
 } from "react-map-gl"
 import { useEffect, useState } from "react";
 import Pin from "./Pin/Pin";
@@ -12,6 +11,8 @@ import { getMarkers } from "../../redux/actions/api/getData";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import Description from "./Description/Description";
+import { useNavigate } from "react-router-dom";
+import { setCurrentMarker } from "../../redux/actions/action";
 
 const Map = (props) => {
     const [viewState] = useState({
@@ -20,6 +21,8 @@ const Map = (props) => {
         zoom: 10,
     })
     const [popup, setPopup] = useState(null);
+    let navigate = useNavigate();
+
 
     useEffect(() => {
         async function getMarkers() {
@@ -30,7 +33,9 @@ const Map = (props) => {
     }, [])
 
     function clickedMarker(marker) {
-        setPopup(marker)
+        setPopup(marker);
+        props.setCurrentMarker(marker);
+        navigate("/info");
     }
 
     return (
@@ -61,7 +66,6 @@ const Map = (props) => {
                     </div>
                 }
 
-
                 {popup && (
                     <Description marker={popup} setPopup={setPopup} />
                 )}
@@ -78,7 +82,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getMarkers: getMarkers
+        getMarkers: getMarkers,
+        setCurrentMarker: setCurrentMarker
     }, dispatch)
 }
 

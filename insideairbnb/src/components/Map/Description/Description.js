@@ -11,9 +11,16 @@ const Description = (props) => {
             closeOnClick={false}
             onClose={() => props.setPopup(null)}
         >
-            <div>
-                {props.marker.name}
+            <div className="alignLeft">
+
+                <div className="blueText bold smallText">
+                    {props.marker.name}
+                </div>
+                <div className="smallText">
+                    Hosted by: {props.marker.hostName}
+                </div>
             </div>
+
         </Popup>
     )
 }

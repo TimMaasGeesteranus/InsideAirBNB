@@ -1,3 +1,10 @@
 .sidebar {
   background: #e6e6e6;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.sidebarDisplay {
+  text-align: left;
+  margin: 20px;
 }

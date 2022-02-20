@@ -1,0 +1,27 @@
+.menuContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.menuItem {
+  background: #1396d9;
+  padding: 10px;
+  flex-grow: 1;
+  color: white;
+  font-weight: bold;
+}
+
+.menuItem:hover {
+  background: #0f325a;
+  cursor: pointer;
+}
+
+.menuItemClicked {
+  padding: 10px;
+  flex-grow: 1;
+  color: white;
+  font-weight: bold;
+  background: #0f325a;
+  text-decoration: underline;
+}

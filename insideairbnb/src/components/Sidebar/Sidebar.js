@@ -1,23 +1,24 @@
-import { useAuth } from "oidc-react/build/src/useAuth";
 import "./Sidebar.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { getTest } from "../../redux/actions/api/getData";
+import Charts from "./Charts/Charts";
+import { Route, Routes } from "react-router-dom";
+import Data from "./Data/Data";
+import Menu from "./Menu/Menu";
+import LocationInfo from "./LocationInfo/LocationInfo";
 
-const Sidebar = (props) => {
-    const auth = useAuth();
-
+const Sidebar = () => {
     return (
         <div className="sidebar">
-            <p>Amsterdam</p>
-            <button onClick={() => props.getTest(auth.userData.access_token)}>get testdata</button>
-            <button onClick={() => console.log(auth.userData.access_token)}>get auth.user</button>
-
-
-            {auth && auth.userData && <p>ingelogd!</p>}
-            {(!auth || !auth.userData) && <p>uitgelogd</p>}
-
-        </div>
+            <Menu />
+            <div className="sidebarDisplay">
+                <Routes>
+                    <Route exact path="/" element={<Data />} />
+                    <Route path="/charts" element={<Charts />} />
+                    <Route path="/info" element={<LocationInfo />} />
+                </Routes>
+            </div>
+        </div >
     )
 }
 
@@ -28,7 +29,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getTest: getTest
     }, dispatch)
 }
 

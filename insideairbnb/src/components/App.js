@@ -1,4 +1,5 @@
 import { AuthProvider } from 'oidc-react/build/src/AuthContext';
+import { BrowserRouter } from 'react-router-dom';
 import '../styles/App.css';
 import Container from './Container/Container';
 import Header from './Header/Header';
@@ -10,7 +11,7 @@ function App() {
     clientSecret: "SuperSecretPassword",
     automaticSilentRenew: true,
     responseType: 'code',
-    scope:"openid profile",
+    scope: "openid profile",
     redirectUri: 'http://localhost:3000',
     authority: 'https://localhost:3004',
     onBeforeSignIn: () => {
@@ -28,10 +29,11 @@ function App() {
   return (
     <div className="App">
       <AuthProvider {...config}>
-        <Header />
-        <Container />
+        <BrowserRouter>
+          <Header />
+          <Container />
+        </BrowserRouter>
       </AuthProvider>
-
     </div>
   );
 }
