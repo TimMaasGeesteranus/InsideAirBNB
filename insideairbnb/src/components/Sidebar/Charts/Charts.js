@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 const Charts = (props) => {
     const auth = useAuth();
 
-    if (!auth || !auth.userData){
+    if (!auth || !auth.userData) {
         return (
             <div>
                 Log in to get access to charts

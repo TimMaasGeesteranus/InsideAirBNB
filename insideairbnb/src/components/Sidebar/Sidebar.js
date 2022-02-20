@@ -2,7 +2,7 @@ import "./Sidebar.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import Charts from "./Charts/Charts";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Data from "./Data/Data";
 import Menu from "./Menu/Menu";
 import LocationInfo from "./LocationInfo/LocationInfo";

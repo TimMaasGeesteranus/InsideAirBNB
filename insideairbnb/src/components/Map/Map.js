@@ -4,7 +4,6 @@ import MapGL, {
     NavigationControl,
     FullscreenControl,
     ScaleControl,
-    Popup,
 } from "react-map-gl"
 import { useEffect, useState } from "react";
 import Pin from "./Pin/Pin";
