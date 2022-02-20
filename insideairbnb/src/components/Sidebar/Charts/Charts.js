@@ -6,14 +6,17 @@ import { bindActionCreators } from 'redux';
 const Charts = (props) => {
     const auth = useAuth();
 
+    if (!auth || !auth.userData){
+        return (
+            <div>
+                Log in to get access to charts
+            </div>
+        )
+    }
+
     return (
         <div>
-            <button onClick={() => props.getTest(auth.userData.access_token)}>get testdata</button>
-            <button onClick={() => console.log(auth.userData.access_token)}>get auth.user</button>
-
-
-            {auth && auth.userData && <p>ingelogd!</p>}
-            {(!auth || !auth.userData) && <p>uitgelogd</p>}
+            charts!
         </div>
     )
 }

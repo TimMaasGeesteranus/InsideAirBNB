@@ -45,6 +45,25 @@ const LocationInfo = (props) => {
             <div className="mediumText bold">
                 {props.marker.neighbourhood}
             </div>
+
+            <hr />
+
+            <div className="smallText">
+                Bookings per month
+            </div>
+            <div className="mediumText bold">
+                ...
+            </div>
+
+            <br />
+
+            <div className="smallText">
+                Earnings per month
+            </div>
+            <div className="mediumText bold">
+                ...
+            </div>
+
         </div>
     )
 }
