@@ -1,7 +1,9 @@
 ﻿using InsideAirBNB_API.Context;
 using InsideAirBNB_API.Models;
+using InsideAirBNB_API.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsideAirBNB_API.Controllers
 {
@@ -10,20 +12,17 @@ namespace InsideAirBNB_API.Controllers
     //[Authorize]
     public class ListingController : ControllerBase
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly IListingRepository _listingRepository;
 
-        public ListingController(AppDbContext appDbContext)
+        public ListingController(IListingRepository listingRepository)
         {
-            _appDbContext = appDbContext;
+            _listingRepository = listingRepository;
         }
 
         [HttpGet]
         public IActionResult GetListings()
         {
-            var listings = _appDbContext.SummaryListings.Take(100);
-            //var listings = _appDbContext.SummaryListings;
-
-
+            var listings = _listingRepository.GetAll();
             return Ok(listings);
         }
 
@@ -35,6 +34,13 @@ namespace InsideAirBNB_API.Controllers
             listing.Description = "A very beatiful place to live";
             listing.Name = "My beatiful house";
             return Ok(listing);
+        }
+
+        [HttpGet("{_id}")]
+        public IActionResult GetAveragesByListingId(string _id)
+        {
+            var reviews = _listingRepository.GetReviewsById(Int32.Parse(_id));         
+            return Ok(reviews);
         }
     }
 }
