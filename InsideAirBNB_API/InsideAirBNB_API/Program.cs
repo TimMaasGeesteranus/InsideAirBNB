@@ -1,5 +1,6 @@
 using InsideAirBNB_API.Context;
 using InsideAirBNB_API.Repositories;
+using InsideAirBNB_API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IListingRepository, ListingRepository>();
+builder.Services.AddScoped<INeighbourhoodRepository, NeighbourhoodRepository>();
+
 
 
 builder.Services.AddAuthentication("Bearer")

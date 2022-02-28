@@ -44,27 +44,28 @@ const Map = (props) => {
                 initialViewState={{ ...viewState }}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
                 mapboxAccessToken='pk.eyJ1IjoidGltMzYzIiwiYSI6ImNremI3dDUwbjA3NWgyd25yenphbDlsZXoifQ.c6F-abMtJrdGEXPl-2rqXg'
+                cluster={true}
             >
                 <FullscreenControl position="top-left" />
                 <NavigationControl position="top-left" />
                 <ScaleControl />
 
-                {props.markers != undefined &&
-                    <div>
-                        {props.markers.map(marker => (
-                            <Marker
-                                key={`marker-${marker.id}`}
-                                longitude={marker.longitude}
-                                latitude={marker.latitude}
-                                anchor="bottom"
-                            >
-                                <div onClick={() => clickedMarker(marker)}>
-                                    <Pin />
-                                </div>
-                            </Marker>
-                        ))}
-                    </div>
-                }
+                        {props.markers != undefined &&
+                            <div>
+                                {props.markers.map(marker => (
+                                    <Marker
+                                        key={`marker-${marker.id}`}
+                                        longitude={marker.longitude}
+                                        latitude={marker.latitude}
+                                        anchor="bottom"
+                                    >
+                                        <div onClick={() => clickedMarker(marker)}>
+                                            <Pin />
+                                        </div>
+                                    </Marker>
+                                ))}
+                            </div>
+                        }
 
                 {popup && (
                     <Description marker={popup} setPopup={setPopup} />
