@@ -19,24 +19,10 @@ namespace InsideAirBNB_API.Controllers
             _listingRepository = listingRepository;
         }
 
-        [HttpGet]
-        public IActionResult GetListings()
-        {
-            var listings = _listingRepository.GetTop100();
-            return Ok(listings);
-        }
-
-        [HttpGet("/all")]
-        public IActionResult GetAllListings()
-        {
-            var listings = _listingRepository.GetAll();
-            return Ok(listings);
-        }
-
         [HttpGet("/minimal/{neighbourhood}")]
         public IActionResult GetMinimalInfo(string neighbourhood)
         {
-            var listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood).Take(100);
+            var listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood).Take(10);
             return Ok(listings);
         }
 

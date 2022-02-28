@@ -12,11 +12,6 @@ namespace InsideAirBNB_API.Repositories
             _appDbContext = appDbContext;
         }
 
-        public IEnumerable<SummaryListing> GetAll()
-        {
-            return _appDbContext.SummaryListings;
-        }
-
         public IEnumerable<MinimalListing> GetMinimalInfoByNeighbourhood(string neighbourhood)
         {
             var listings = _appDbContext.SummaryListings
@@ -36,11 +31,6 @@ namespace InsideAirBNB_API.Repositories
         public IEnumerable<Review> GetReviewsById(int id)
         {
             return _appDbContext.Reviews.Where(r => r.ListingId == id);
-        }
-
-        public IEnumerable<SummaryListing> GetTop100()
-        {
-            return _appDbContext.SummaryListings.Take(100);
         }
     }
 }
