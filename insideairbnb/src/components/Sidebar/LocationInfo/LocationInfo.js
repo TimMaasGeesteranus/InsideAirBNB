@@ -67,7 +67,7 @@ const LocationInfo = (props) => {
                     Bookings per month
                 </div>
                 <div className="mediumText bold">
-                    ...
+                    {marker.bookingsPerMonth}
                 </div>
 
                 <br />
@@ -76,7 +76,7 @@ const LocationInfo = (props) => {
                     Earnings per month
                 </div>
                 <div className="mediumText bold">
-                    ...
+                    {marker.earningsPerMonth}
                 </div>
             </div>}
 

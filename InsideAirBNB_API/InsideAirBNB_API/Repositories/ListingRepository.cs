@@ -28,9 +28,24 @@ namespace InsideAirBNB_API.Repositories
             return listings;
         }
 
-        public SummaryListing GetListingById(int id)
+        public ListingWithStats GetListingById(int id)
         {
-            return _appDbContext.SummaryListings.FirstOrDefault(l => l.Id == id);
+            SummaryListing listing = _appDbContext.SummaryListings.FirstOrDefault(l => l.Id == id);
+            ListingWithStats listingWithStats = new ListingWithStats
+            {
+                Id = listing.Id,
+                Name = listing.Name,
+                HostName = listing.HostName,
+                Neighbourhood = listing.Neighbourhood,
+                RoomType = listing.RoomType,
+                Price = listing.Price,
+                MinimumNights = listing.MinimumNights,
+                NumberOfReviews = listing.NumberOfReviews,
+                ReviewsPerMonth = listing.ReviewsPerMonth,
+                BookingsPerMonth = 36,
+                EarningsPerMonth = 12
+            };
+            return listingWithStats;
         }
 
     }
