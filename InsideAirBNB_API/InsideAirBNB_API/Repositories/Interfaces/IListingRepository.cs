@@ -6,6 +6,6 @@ namespace InsideAirBNB_API.Repositories
     {
         IEnumerable<MinimalListing> GetMinimalInfoByNeighbourhood(string neighbourhood);
 
-        IEnumerable<Review> GetReviewsById(int id);
+        SummaryListing GetListingById(int id);
     }
 }

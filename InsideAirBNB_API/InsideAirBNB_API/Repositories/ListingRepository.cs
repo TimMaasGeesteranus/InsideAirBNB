@@ -28,9 +28,10 @@ namespace InsideAirBNB_API.Repositories
             return listings;
         }
 
-        public IEnumerable<Review> GetReviewsById(int id)
+        public SummaryListing GetListingById(int id)
         {
-            return _appDbContext.Reviews.Where(r => r.ListingId == id);
+            return _appDbContext.SummaryListings.FirstOrDefault(l => l.Id == id);
         }
+
     }
 }

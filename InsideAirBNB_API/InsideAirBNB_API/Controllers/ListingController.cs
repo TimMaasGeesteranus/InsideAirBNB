@@ -36,11 +36,11 @@ namespace InsideAirBNB_API.Controllers
             return Ok(listing);
         }
 
-        [HttpGet("{_id}")]
-        public IActionResult GetAveragesByListingId(string _id)
+        [HttpGet("{id}")]
+        public IActionResult GetAveragesByListingId(string id)
         {
-            var reviews = _listingRepository.GetReviewsById(Int32.Parse(_id));         
-            return Ok(reviews);
+            var listing = _listingRepository.GetListingById(Int32.Parse(id));         
+            return Ok(listing);
         }
     }
 }

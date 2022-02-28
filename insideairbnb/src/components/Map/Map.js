@@ -34,7 +34,7 @@ const Map = (props) => {
 
     function clickedMarker(marker) {
         setPopup(marker);
-        props.setCurrentMarker(marker);
+        props.setCurrentMarker(marker.id);
         navigate("/info");
     }
 

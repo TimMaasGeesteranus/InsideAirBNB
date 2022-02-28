@@ -10,10 +10,15 @@ function reducer(state = initialState, action) {
                 ...state,
                 markers: current.concat(action.data)
             };
+        case "GET_MARKERINFO_SUCCESS":
+            return{
+                ...state,
+                currentMarker: action.data
+            }
         case "SET_CURRENT_MARKER":
             return {
                 ...state,
-                currentMarker: action.marker
+                currentMarkerId: action.markerid
             }
         default:
             return state;
