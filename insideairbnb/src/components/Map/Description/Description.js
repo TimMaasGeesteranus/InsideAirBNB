@@ -3,21 +3,25 @@ import { Popup } from "react-map-gl"
 
 const Description = (props) => {
 
+    useEffect(() => {
+        console.log(props.marker);
+    }, [])
+
     return (
         <Popup
             anchor="top"
-            longitude={Number(props.marker.longitude)}
-            latitude={Number(props.marker.latitude)}
+            longitude={Number(props.marker.geometry.coordinates[0])}
+            latitude={Number(props.marker.geometry.coordinates[1])}
             closeOnClick={false}
             onClose={() => props.setPopup(null)}
         >
             <div className="alignLeft">
 
                 <div className="blueText bold smallText">
-                    {props.marker.name}
+                    {props.marker.properties.name}
                 </div>
                 <div className="smallText">
-                    Hosted by: {props.marker.hostName}
+                    Hosted by: {props.marker.properties.hostName}
                 </div>
             </div>
 

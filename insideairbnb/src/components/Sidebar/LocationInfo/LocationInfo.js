@@ -1,68 +1,84 @@
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
+import { getListingInfo } from "../../../redux/actions/api/getData";
 
 const LocationInfo = (props) => {
+    const [marker, setMarker] = useState();
+
+    useEffect(() => {
+        async function get() {
+            await props.getInfo(props.markerId);
+            setMarker(props.marker);
+        }
+
+        if (!marker || (props.markerId !== marker.id)) {
+            get();
+        }
+    })
 
     return (
         <div className="locationInfoText">
-            <div className="bigText bold blueText">
-                {props.marker.name}
-            </div>
-            <div className="smallText">
-                Hosted by: {props.marker.hostName}
-            </div>
+            {marker && <div>
+                <div className="bigText bold blueText">
+                    {marker.name}
+                </div>
+                <div className="smallText">
+                    Hosted by: {marker.hostName}
+                </div>
 
-            <hr />
+                <hr />
 
-            <div className="bigText lightblueText">
-                €{props.marker.price} per night
-            </div>
+                <div className="bigText lightblueText">
+                    €{marker.price} per night
+                </div>
 
-            <br />
+                <br />
 
-            <div className="smallText">
-                Minimum amount of nights
+                <div className="smallText">
+                    Minimum amount of nights
 
-            </div>
-            <div className="mediumText bold">
-                {props.marker.minimumNights}
-            </div>
+                </div>
+                <div className="mediumText bold">
+                    {marker.minimumNights}
+                </div>
 
-            <br />
+                <br />
 
-            <div className="smallText">
-                Roomtype
-            </div>
-            <div className="mediumText bold">
-                {props.marker.roomType}
-            </div>
+                <div className="smallText">
+                    Roomtype
+                </div>
+                <div className="mediumText bold">
+                    {marker.roomType}
+                </div>
 
-            <br />
+                <br />
 
-            <div className="smallText">
-                Neighbourhood
-            </div>
-            <div className="mediumText bold">
-                {props.marker.neighbourhood}
-            </div>
+                <div className="smallText">
+                    Neighbourhood
+                </div>
+                <div className="mediumText bold">
+                    {marker.neighbourhood}
+                </div>
 
-            <hr />
+                <hr />
 
-            <div className="smallText">
-                Bookings per month
-            </div>
-            <div className="mediumText bold">
-                ...
-            </div>
+                <div className="smallText">
+                    Bookings per month
+                </div>
+                <div className="mediumText bold">
+                    {marker.bookingsPerMonth}
+                </div>
 
-            <br />
+                <br />
 
-            <div className="smallText">
-                Earnings per month
-            </div>
-            <div className="mediumText bold">
-                ...
-            </div>
+                <div className="smallText">
+                    Earnings per month
+                </div>
+                <div className="mediumText bold">
+                    {marker.earningsPerMonth}
+                </div>
+            </div>}
 
         </div>
     )
@@ -70,12 +86,15 @@ const LocationInfo = (props) => {
 
 function mapStateToProps(state) {
     return {
+        markerId: state.data.currentMarkerId,
         marker: state.data.currentMarker
+
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        getInfo: getListingInfo
     }, dispatch)
 }
 

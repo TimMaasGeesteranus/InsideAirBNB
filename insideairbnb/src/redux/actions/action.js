@@ -1,4 +1,5 @@
 import {
+    GET_MARKERINFO_SUCCESS,
     GET_MARKERS_SUCCESS, SET_CURRENT_MARKER,
 } from "./actionType.js";
 
@@ -15,9 +16,16 @@ export function getMarkersSuccess(data) {
     }
 }
 
-export function setCurrentMarker(marker) {
+export function getMarkerInfoSuccess(data){
+    return {
+        type: GET_MARKERINFO_SUCCESS,
+        data
+    }
+}
+
+export function setCurrentMarker(markerid) {
     return {
         type: SET_CURRENT_MARKER,
-        marker
+        markerid
     }
 }
