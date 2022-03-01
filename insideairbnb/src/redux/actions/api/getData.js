@@ -31,6 +31,24 @@ export function getMarkers(accessToken) {
             .catch(e => {
                 console.log("oeps");
             })
+
+        // fetch(`${process.env.REACT_APP_API_ADRESS}/all`, {
+        // })
+        //     .then((response) => {
+        //         if (response.status !== 200) {
+        //             throw new Error();
+        //         }
+        //         return response.json()
+        //     })
+        //     .then((data) => {
+
+        //         dispatch(getMarkersSuccess(data));
+
+        //     })
+        //     .catch(e => {
+        //         console.log("oeps: ");
+        //         console.log(e.message);
+        //     })
     }
 }
 

@@ -48,5 +48,20 @@ namespace InsideAirBNB_API.Repositories
             return listingWithStats;
         }
 
+        public IEnumerable<MinimalListing> GetAll()
+        {
+            var listings = _appDbContext.SummaryListings
+                .Select(l => new MinimalListing
+                {
+                    Latitude = l.Latitude,
+                    Longitude = l.Longitude,
+                    Name = l.Name,
+                    HostName = l.HostName,
+                    Id = l.Id,
+                });
+
+            return listings;
+        }
+
     }
 }
