@@ -61,6 +61,10 @@ const Map = (props) => {
         setData(props.markers);
     }, [props.markers])
 
+    useEffect(() => {
+        setData(props.filteredMarkers);
+    }, [props.filteredMarkers])
+
     function clickedMarker(marker) {
         console.log(marker);
         setPopup(marker);
@@ -152,7 +156,8 @@ const Map = (props) => {
 
 function mapStateToProps(state) {
     return {
-        markers: state.data.markers
+        markers: state.data.markers,
+        filteredMarkers: state.data.filteredMarkers
     }
 }
 

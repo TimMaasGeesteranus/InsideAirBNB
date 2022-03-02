@@ -2,6 +2,7 @@ import {
     GET_MARKERINFO_SUCCESS,
     GET_MARKERS_SUCCESS,
     SET_CURRENT_MARKER,
+    SET_FILTERED_MARKERS,
     SET_NEIGHBOURHOODS,
 } from "./actionType.js";
 
@@ -35,6 +36,19 @@ export function setCurrentMarker(markerid) {
 export function SetNeighbourhoods(data) {
     return {
         type: SET_NEIGHBOURHOODS,
+        data
+    }
+}
+
+export function SetFilteredMarkers(data){
+    data.map(marker => {
+        marker.latitude = marker.latitude.toString().substr(0, 2) + "." + marker.latitude.toString().substr(2);
+        marker.longitude = marker.longitude.toString().substr(0, 1) + "." + marker.longitude.toString().substr(1);
+        return marker;
+    })
+    
+    return {
+        type: SET_FILTERED_MARKERS,
         data
     }
 }

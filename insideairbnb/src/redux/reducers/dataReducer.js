@@ -1,6 +1,7 @@
 const initialState = {
     markers: [],
-    neighbourhoods: []
+    neighbourhoods: [],
+    filteredMarkers: []
 }
 
 function reducer(state = initialState, action) {
@@ -26,6 +27,11 @@ function reducer(state = initialState, action) {
                 ...state,
                 neighbourhoods: action.data
             };
+        case "SET_FILTERED_MARKERS":
+            return {
+                ...state,
+                filteredMarkers: action.data
+            }
         default:
             return state;
     }

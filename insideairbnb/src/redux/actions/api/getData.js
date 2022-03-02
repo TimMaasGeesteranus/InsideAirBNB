@@ -1,4 +1,4 @@
-import { getMarkerInfoSuccess, getMarkersSuccess, SetNeighbourhoods } from "../action";
+import { getMarkerInfoSuccess, getMarkersSuccess, SetFilteredMarkers, SetNeighbourhoods } from "../action";
 
 export function getMarkers(accessToken) {
     return (dispatch) => {
@@ -59,8 +59,8 @@ export function getMarkersWithFilters(neighbourhood, minreview, maxreview, minpr
                 }
                 return response.json();
             })
-            .then(data => {
-                console.log(data);
+            .then(data => {               
+                dispatch(SetFilteredMarkers(data));
             })
     }
 }

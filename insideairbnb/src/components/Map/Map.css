@@ -1,5 +1,6 @@
-.map {
+.map.div {
   height: 100%;
+  width: 100px !important;
 }
 
 .cluster-marker {
