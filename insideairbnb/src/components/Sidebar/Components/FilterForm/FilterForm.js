@@ -3,6 +3,7 @@ import "./FilterForm.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { useEffect, useState } from "react";
+import { getMarkersWithFilters } from "../../../../redux/actions/api/getData";
 
 const FilterForm = (props) => {
     const [minReview, setMinReview] = useState(null);
@@ -40,7 +41,7 @@ const FilterForm = (props) => {
         }
         else{
             setError();
-            console.log("getting data!");
+            props.filter(neighbourhood, minReview, maxReview, minPrice, maxPrice);
         }
     }
 
@@ -91,6 +92,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        filter: getMarkersWithFilters
     }, dispatch)
 }
 
