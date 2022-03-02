@@ -10,12 +10,8 @@ const FilterForm = (props) => {
     const [maxReview, setMaxReview] = useState(null);
     const [minPrice, setMinPrice] = useState(null);
     const [maxPrice, setMaxPrice] = useState(null);
-    const [neighbourhood, setNeighbourhood] = useState(null);
+    const [neighbourhood, setNeighbourhood] = useState("Amsterdam");
     const [error, setError] = useState();
-
-    useEffect(() => {
-        setNeighbourhood(props.neighbourhoods[0])
-    }, [props.neighbourhoods])
 
     const isNumber = (event) => !/[0-9]/.test(event.key);
 
@@ -52,6 +48,7 @@ const FilterForm = (props) => {
             <div className="selector">
                 Neighbourhood: <div className="floatRight">
                     <select className="select" id="neighbourhoods" name="neighbourhoods" value={neighbourhood} onChange={e => setNeighbourhood(e.target.value)}>
+                        <option value="Amsterdam">Amsterdam</option>
                         {props.neighbourhoods.map(el => (
                             <option value={el}>{el}</option>
                         ))}
