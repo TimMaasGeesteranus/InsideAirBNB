@@ -1,6 +1,4 @@
-import Button from "../Components/Button/Button";
-import Select from "../Components/Select/Select";
-import SelectBetween from "../Components/SelectBetween/SelectBetween";
+import FilterForm from "../Components/FilterForm/FilterForm";
 import "./Data.css";
 
 const Data = () => {
@@ -12,19 +10,7 @@ const Data = () => {
 
             <hr />
 
-            <div className="selector">
-                Neighbourhood: <div className="floatRight"><Select /></div>
-            </div>
-            <div className="selector">
-                Review: <div className="floatRight"><SelectBetween /></div>
-            </div>
-            <div className="selector">
-                Prijs: <div className="floatRight"><SelectBetween /></div>
-            </div>
-
-            <Button>
-                Filter
-            </Button>
+            <FilterForm />
 
             <hr />
 

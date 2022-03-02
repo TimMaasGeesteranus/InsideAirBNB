@@ -1,4 +1,4 @@
-import { getMarkerInfoSuccess, getMarkersSuccess } from "../action";
+import { getMarkerInfoSuccess, getMarkersSuccess, SetNeighbourhoods } from "../action";
 
 export function getMarkers(accessToken) {
     return (dispatch) => {
@@ -12,6 +12,7 @@ export function getMarkers(accessToken) {
                 return response.json()
             })
             .then((data) => {
+                dispatch(SetNeighbourhoods(data));
                 data.forEach(neighbourhood => {
 
                     fetch(`${process.env.REACT_APP_API_ADRESS}/minimal/${neighbourhood}`, {

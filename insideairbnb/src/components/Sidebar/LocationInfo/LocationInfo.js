@@ -64,7 +64,7 @@ const LocationInfo = (props) => {
                 <hr />
 
                 <div className="smallText">
-                    Bookings per month
+                    Total amount of bookings
                 </div>
                 <div className="mediumText bold">
                     {marker.bookingsPerMonth}

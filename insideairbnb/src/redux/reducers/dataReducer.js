@@ -1,5 +1,6 @@
 const initialState = {
-    markers: []
+    markers: [],
+    neighbourhoods: []
 }
 
 function reducer(state = initialState, action) {
@@ -14,12 +15,17 @@ function reducer(state = initialState, action) {
             return{
                 ...state,
                 currentMarker: action.data
-            }
+            };
         case "SET_CURRENT_MARKER":
             return {
                 ...state,
                 currentMarkerId: action.markerid
-            }
+            };
+        case "SET_NEIGHBOURHOODS":
+            return {
+                ...state,
+                neighbourhoods: action.data
+            };
         default:
             return state;
     }

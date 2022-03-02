@@ -1,6 +1,8 @@
 import {
     GET_MARKERINFO_SUCCESS,
-    GET_MARKERS_SUCCESS, SET_CURRENT_MARKER,
+    GET_MARKERS_SUCCESS,
+    SET_CURRENT_MARKER,
+    SET_NEIGHBOURHOODS,
 } from "./actionType.js";
 
 export function getMarkersSuccess(data) {
@@ -16,7 +18,7 @@ export function getMarkersSuccess(data) {
     }
 }
 
-export function getMarkerInfoSuccess(data){
+export function getMarkerInfoSuccess(data) {
     return {
         type: GET_MARKERINFO_SUCCESS,
         data
@@ -27,5 +29,12 @@ export function setCurrentMarker(markerid) {
     return {
         type: SET_CURRENT_MARKER,
         markerid
+    }
+}
+
+export function SetNeighbourhoods(data) {
+    return {
+        type: SET_NEIGHBOURHOODS,
+        data
     }
 }
