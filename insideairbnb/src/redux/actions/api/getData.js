@@ -98,6 +98,8 @@ export function getListingInfo(id) {
                 return response.json()
             })
             .then(data => {
+                console.log("info about marker:")
+                console.log(data);
                 dispatch(getMarkerInfoSuccess(data));
             })
             .catch(e => {
