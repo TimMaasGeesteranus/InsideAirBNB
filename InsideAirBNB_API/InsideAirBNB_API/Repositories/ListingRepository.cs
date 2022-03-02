@@ -70,6 +70,22 @@ namespace InsideAirBNB_API.Repositories
 
         public IEnumerable<MinimalListing> GetFiltered(Filters filters)
         {
+            if (filters.Neighbourhood == "Amsterdam")
+            {
+                return _appDbContext.SummaryListings
+                .Where(l => l.Price < filters.Maxprice)
+                .Where(l => l.Price > filters.Minprice)
+                .Where(l => l.NumberOfReviews > filters.MinReview)
+                .Where(l => l.NumberOfReviews < filters.MaxReview)
+                .Select(l => new MinimalListing
+                {
+                    Latitude = l.Latitude,
+                    Longitude = l.Longitude,
+                    Name = l.Name,
+                    Id = l.Id,
+                });
+            }
+
             var listings = _appDbContext.SummaryListings
                 .Where(l => l.Neighbourhood == filters.Neighbourhood)
                 .Where(l => l.Price < filters.Maxprice)

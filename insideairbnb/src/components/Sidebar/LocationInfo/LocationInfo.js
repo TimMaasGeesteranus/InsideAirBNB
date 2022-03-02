@@ -64,7 +64,7 @@ const LocationInfo = (props) => {
                 <hr />
 
                 <div className="smallText">
-                    Total amount of bookings
+                    Monthly bookings
                 </div>
                 <div className="mediumText bold">
                     {marker.bookingsPerMonth}
@@ -73,10 +73,10 @@ const LocationInfo = (props) => {
                 <br />
 
                 <div className="smallText">
-                    Earnings per month
+                    Monthly income
                 </div>
                 <div className="mediumText bold">
-                    {marker.earningsPerMonth}
+                    €{marker.earningsPerMonth}
                 </div>
             </div>}
 
