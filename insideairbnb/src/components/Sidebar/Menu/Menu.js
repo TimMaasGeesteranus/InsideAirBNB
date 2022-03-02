@@ -8,7 +8,7 @@ const Menu = () => {
     return (
         <div className="menuContainer">
             <div onClick={() => navigate("/")} className={path.pathname === "/" ? "menuItemClicked" : "menuItem"}>
-                Data
+                Filter Data
             </div>
             <div onClick={() => navigate("/charts")} className={path.pathname === "/charts" ? "menuItemClicked" : "menuItem"}>
                 Charts

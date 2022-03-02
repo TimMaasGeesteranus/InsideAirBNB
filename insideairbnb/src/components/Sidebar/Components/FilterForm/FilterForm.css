@@ -1,0 +1,16 @@
+.select {
+  width: 106px;
+}
+
+.selector {
+  margin-bottom: 10px;
+}
+
+.betweenInput {
+  width: 40px;
+  margin-left: 10px;
+}
+
+.errorText{
+  color: red;
+}

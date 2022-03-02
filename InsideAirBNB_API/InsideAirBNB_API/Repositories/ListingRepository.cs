@@ -30,20 +30,25 @@ namespace InsideAirBNB_API.Repositories
 
         public ListingWithStats GetListingById(int id)
         {
-            SummaryListing listing = _appDbContext.SummaryListings.FirstOrDefault(l => l.Id == id);
+            Listing listing = _appDbContext.Listings.FirstOrDefault(l => l.Id == id);
+            SummaryListing sListing = _appDbContext.SummaryListings.FirstOrDefault(l => l.Id == id);
+
+            var bookingsPerMonth = (int)(listing.Availability365 / 12);
+            var earningsPerMonth = (int)(bookingsPerMonth * sListing.Price);
+
             ListingWithStats listingWithStats = new ListingWithStats
             {
-                Id = listing.Id,
-                Name = listing.Name,
-                HostName = listing.HostName,
-                Neighbourhood = listing.Neighbourhood,
-                RoomType = listing.RoomType,
-                Price = listing.Price,
-                MinimumNights = listing.MinimumNights,
-                NumberOfReviews = listing.NumberOfReviews,
-                ReviewsPerMonth = listing.ReviewsPerMonth,
-                BookingsPerMonth = 36,
-                EarningsPerMonth = 12
+                Id = sListing.Id,
+                Name = sListing.Name,
+                HostName = sListing.HostName,
+                Neighbourhood = sListing.Neighbourhood,
+                RoomType = sListing.RoomType,
+                Price = sListing.Price,
+                MinimumNights = sListing.MinimumNights,
+                NumberOfReviews = sListing.NumberOfReviews,
+                ReviewsPerMonth = sListing.ReviewsPerMonth,
+                BookingsPerMonth = bookingsPerMonth,
+                EarningsPerMonth = earningsPerMonth
             };
             return listingWithStats;
         }
@@ -57,6 +62,41 @@ namespace InsideAirBNB_API.Repositories
                     Longitude = l.Longitude,
                     Name = l.Name,
                     HostName = l.HostName,
+                    Id = l.Id,
+                });
+
+            return listings;
+        }
+
+        public IEnumerable<MinimalListing> GetFiltered(Filters filters)
+        {
+            if (filters.Neighbourhood == "Amsterdam")
+            {
+                return _appDbContext.SummaryListings
+                .Where(l => l.Price < filters.Maxprice)
+                .Where(l => l.Price > filters.Minprice)
+                .Where(l => l.NumberOfReviews > filters.MinReview)
+                .Where(l => l.NumberOfReviews < filters.MaxReview)
+                .Select(l => new MinimalListing
+                {
+                    Latitude = l.Latitude,
+                    Longitude = l.Longitude,
+                    Name = l.Name,
+                    Id = l.Id,
+                });
+            }
+
+            var listings = _appDbContext.SummaryListings
+                .Where(l => l.Neighbourhood == filters.Neighbourhood)
+                .Where(l => l.Price < filters.Maxprice)
+                .Where(l => l.Price > filters.Minprice)
+                .Where(l => l.NumberOfReviews > filters.MinReview)
+                .Where(l => l.NumberOfReviews < filters.MaxReview)
+                .Select(l => new MinimalListing
+                {
+                    Latitude = l.Latitude,
+                    Longitude = l.Longitude,
+                    Name = l.Name,
                     Id = l.Id,
                 });
 

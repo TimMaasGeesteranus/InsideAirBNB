@@ -1,4 +1,4 @@
-import { getMarkerInfoSuccess, getMarkersSuccess } from "../action";
+import { getMarkerInfoSuccess, getMarkersSuccess, SetFilteredMarkers, SetNeighbourhoods } from "../action";
 
 export function getMarkers(accessToken) {
     return (dispatch) => {
@@ -12,6 +12,7 @@ export function getMarkers(accessToken) {
                 return response.json()
             })
             .then((data) => {
+                dispatch(SetNeighbourhoods(data));
                 data.forEach(neighbourhood => {
 
                     fetch(`${process.env.REACT_APP_API_ADRESS}/minimal/${neighbourhood}`, {
@@ -31,24 +32,36 @@ export function getMarkers(accessToken) {
             .catch(e => {
                 console.log("oeps");
             })
+    }
+}
 
-        // fetch(`${process.env.REACT_APP_API_ADRESS}/all`, {
-        // })
-        //     .then((response) => {
-        //         if (response.status !== 200) {
-        //             throw new Error();
-        //         }
-        //         return response.json()
-        //     })
-        //     .then((data) => {
+export function getMarkersWithFilters(neighbourhood, minreview, maxreview, minprice, maxprice) {
+    minreview = minreview || 0;
+    maxreview = maxreview || 10000;
+    minprice = minprice || 0;
+    maxprice = maxprice || 10000;
 
-        //         dispatch(getMarkersSuccess(data));
+    let filters = {neighbourhood: neighbourhood, minPrice: minprice, maxPrice: maxprice, minReview: minreview, maxReview: maxreview}
 
-        //     })
-        //     .catch(e => {
-        //         console.log("oeps: ");
-        //         console.log(e.message);
-        //     })
+    console.log(filters);
+
+    return (dispatch) => {
+        fetch(`${process.env.REACT_APP_API_ADRESS}/filtered`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(filters)
+        })
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error();
+                }
+                return response.json();
+            })
+            .then(data => {               
+                dispatch(SetFilteredMarkers(data));
+            })
     }
 }
 
@@ -85,6 +98,8 @@ export function getListingInfo(id) {
                 return response.json()
             })
             .then(data => {
+                console.log("info about marker:")
+                console.log(data);
                 dispatch(getMarkerInfoSuccess(data));
             })
             .catch(e => {

@@ -31,9 +31,16 @@ namespace InsideAirBNB_API.Controllers
         [HttpGet("/minimal/{neighbourhood}")]
         public IActionResult GetMinimalInfo(string neighbourhood)
         {
-            //var listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood).Take(50);
-            var listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood);
+            var listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood).Take(50);
+            //var listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood);
 
+            return Ok(listings);
+        }
+
+        [HttpPost("/filtered")]
+        public IActionResult GetFiltered([FromBody] Filters filters)
+        {
+            var listings = _listingRepository.GetFiltered(filters);
             return Ok(listings);
         }
 

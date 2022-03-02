@@ -14,7 +14,7 @@ namespace InsideAirBNB_API.Models
         public int? MinimumNights { get; set; }
         public int? NumberOfReviews { get; set; }
         public double? ReviewsPerMonth { get; set; }
-        public int BookingsPerMonth { get; set; }
+        public int BookingsPerMonth { get; set; } // Or total, dat is ook een optie
         public int EarningsPerMonth { get; set; }
     }
 }

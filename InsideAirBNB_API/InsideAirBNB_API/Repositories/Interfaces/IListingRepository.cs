@@ -8,5 +8,6 @@ namespace InsideAirBNB_API.Repositories
 
         ListingWithStats GetListingById(int id);
         IEnumerable<MinimalListing> GetAll();
+        IEnumerable<MinimalListing> GetFiltered(Filters filters);
     }
 }
