@@ -2,6 +2,10 @@ import { useAuth } from "oidc-react/build/src/useAuth";
 import { getTest } from "../../../redux/actions/api/getData";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
+import AvailabilityChart from "./AvailabilityChart";
+import PriceChart from "./PriceChart";
+import BedsToBedroomsChart from "./BedsToBedroomsChart";
+import BedsToBathroomsCharts from "./BedsToBathroomsCharts";
 
 const Charts = (props) => {
     const auth = useAuth();
@@ -17,7 +21,27 @@ const Charts = (props) => {
 
     return (
         <div>
-            charts!
+
+            <div className="mediumText bold">
+                Neighbourhood data
+            </div>
+            <br />
+            <AvailabilityChart />
+            <br />
+            <PriceChart />
+
+            <hr />
+
+            <div className="mediumText bold">
+                Listing data
+            </div>
+            <br />
+            <BedsToBedroomsChart />
+            <br />
+            <BedsToBathroomsCharts />
+            <br />
+            <br />
+            <br />
         </div>
     )
 }
