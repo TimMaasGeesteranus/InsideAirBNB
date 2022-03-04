@@ -8,14 +8,13 @@ import PriceChart from "./PriceChart";
 const Charts = (props) => {
     const auth = useAuth();
 
-    // AUTHORIZATION OFF
-    // if (!auth || !auth.userData) {
-    //     return (
-    //         <div>
-    //             Log in to get access to charts
-    //         </div>
-    //     )
-    // }
+    if (!auth || !auth.userData) {
+        return (
+            <div>
+                Log in to get access to charts
+            </div>
+        )
+    }
 
     return (
         <div>
