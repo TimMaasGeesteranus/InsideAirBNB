@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import AvailabilityChart from "./AvailabilityChart";
 import PriceChart from "./PriceChart";
-import BedsToBedroomsChart from "./BedsToBedroomsChart";
-import BedsToBathroomsCharts from "./BedsToBathroomsCharts";
 
 const Charts = (props) => {
     const auth = useAuth();
@@ -23,25 +21,19 @@ const Charts = (props) => {
         <div>
 
             <div className="mediumText bold">
-                Neighbourhood data
+                Availability
             </div>
-            <br />
             <AvailabilityChart />
-            <br />
-            <PriceChart />
 
+            <br />
             <hr />
+            <br />
 
             <div className="mediumText bold">
-                Listing data
+                Price 
             </div>
-            <br />
-            <BedsToBedroomsChart />
-            <br />
-            <BedsToBathroomsCharts />
-            <br />
-            <br />
-            <br />
+            <PriceChart />
+
         </div>
     )
 }

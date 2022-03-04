@@ -34,7 +34,7 @@ const PriceChart = (props) => {
                     labels: Object.keys(props.data),
                     datasets: [
                         {
-                            label: 'Days',
+                            label: 'Price',
                             data: Object.values(props.data),
                             borderColor: 'rgb(53, 162, 235)',
                             backgroundColor: 'rgba(53, 162, 235, 0.5)',
