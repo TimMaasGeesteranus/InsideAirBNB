@@ -11,14 +11,39 @@ import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
+import { getAvailabilityPerNeighbourhood } from '../../../redux/actions/api/getStatistics';
 import "./Charts.css";
 
 const AvailabilityChart = (props) => {
-    const [labels, setLabels] = useState([]);
+    const [dataSet, setDataSet] = useState([]);
+    const [data, setData] = useState();
 
     useEffect(() => {
-        setLabels(props.neighbourhoods)
-    }, [props.neighbourhoods])
+        async function get() {
+            await props.getData();
+        }
+
+        get();
+    }, [])
+
+    useEffect(() => {
+        setDataSet(props.data);
+        if (props.data) {
+            setData(
+                {
+                    labels: Object.keys(props.data),
+                    datasets: [
+                        {
+                            label: 'Days',
+                            data: Object.values(props.data),
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        }
+                    ],
+                }
+            )
+        }
+    }, [props.data])
 
     ChartJS.register(
         CategoryScale,
@@ -49,34 +74,24 @@ const AvailabilityChart = (props) => {
         },
     }
 
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: 'Days',
-                data: labels.map(() => Math.random()),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            }
-        ],
-    }
-
     return (
-        <div className='availabilityChart'> 
-            <Bar options={options} data={data}/>
+        <div className='availabilityChart'>
+            {data &&
+                <Bar options={options} data={data} />
+            }
         </div>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        neighbourhoods: state.data.neighbourhoods
+        data: state.data.statsNA
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-
+        getData: getAvailabilityPerNeighbourhood
     }, dispatch)
 }
 

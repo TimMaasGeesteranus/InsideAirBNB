@@ -30,7 +30,6 @@ const BedsToBathRoomsChart = (props) => {
     };
 
     const data = {
-        labels,
         datasets: [
             {
                 label: 'A dataset',
