@@ -1,6 +1,8 @@
 import {
     GET_MARKERINFO_SUCCESS,
     GET_MARKERS_SUCCESS,
+    GET_STATS_NA_SUCCESS,
+    GET_STATS_NP_SUCCESS,
     SET_CURRENT_MARKER,
     SET_FILTERED_MARKERS,
     SET_NEIGHBOURHOODS,
@@ -49,6 +51,20 @@ export function SetFilteredMarkers(data){
     
     return {
         type: SET_FILTERED_MARKERS,
+        data
+    }
+}
+
+export function GetStatsNPSuccess(data){
+    return {
+        type: GET_STATS_NP_SUCCESS,
+        data
+    }
+}
+
+export function GetStatsNASuccess(data){
+    return {
+        type: GET_STATS_NA_SUCCESS,
         data
     }
 }

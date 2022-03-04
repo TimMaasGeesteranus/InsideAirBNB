@@ -13,7 +13,7 @@ function reducer(state = initialState, action) {
                 markers: current.concat(action.data)
             };
         case "GET_MARKERINFO_SUCCESS":
-            return{
+            return {
                 ...state,
                 currentMarker: action.data
             };
@@ -31,6 +31,16 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 filteredMarkers: action.data
+            };
+        case "GET_STATS_NP_SUCCESS":
+            return {
+                ...state,
+                statsNP: action.data
+            };
+        case "GET_STATS_NA_SUCCESS":
+            return {
+                ...state,
+                statsNA: action.data
             }
         default:
             return state;
