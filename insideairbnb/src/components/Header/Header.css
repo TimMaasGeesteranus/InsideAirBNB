@@ -7,8 +7,8 @@
   position: fixed;
   width: 100%;
   top: 0;
-  border-bottom: 2px solid ;
-  border-color: #0f325a ;
+  border-bottom: 2px solid;
+  border-color: #0f325a;
 }
 
 .headerTitle {
@@ -22,12 +22,23 @@
   margin-left: 20px;
 }
 
-.headerText {
+.blue {
   color: #1396d9;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.headerText {
   font-size: 20px;
   float: right;
   top: 50%;
   transform: translateY(-50%);
   position: relative;
   margin-right: 20px;
+}
+
+.black {
+  color: black;
 }

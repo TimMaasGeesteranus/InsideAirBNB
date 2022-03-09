@@ -8,31 +8,35 @@ import PriceChart from "./PriceChart";
 const Charts = (props) => {
     const auth = useAuth();
 
-    // AUTHORIZATION OFF
-    // if (!auth || !auth.userData) {
-    //     return (
-    //         <div>
-    //             Log in to get access to charts
-    //         </div>
-    //     )
-    // }
+    if (!auth || !auth.userData) {
+        return (
+            <div>
+                Log in to get access to charts
+            </div>
+        )
+    }
 
     return (
         <div>
-
             <div className="mediumText bold">
                 Availability
             </div>
-            <AvailabilityChart />
+            <AvailabilityChart token={auth.userData.access_token} />
 
             <br />
-            <hr />
-            <br />
 
-            <div className="mediumText bold">
-                Price 
-            </div>
-            <PriceChart />
+
+            {(auth.userData.profile.role === "admin") &&
+                <div>
+                    <hr />
+                    <br />
+
+                    <div className="mediumText bold">
+                        Price
+                    </div>
+                    <PriceChart token={auth.userData.access_token} />
+                </div>
+            }
 
         </div>
     )

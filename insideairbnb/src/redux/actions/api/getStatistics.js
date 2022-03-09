@@ -1,8 +1,11 @@
 import { GetStatsNASuccess, GetStatsNPSuccess } from "../action";
 
-export function getPricePerNeighbourhood() {
+export function getPricePerNeighbourhood(accessToken) {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_API_ADRESS}/priceperneighbourhood`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            }
         })
             .then(response => {
                 if (response.status !== 200) {
@@ -21,9 +24,12 @@ export function getPricePerNeighbourhood() {
     }
 }
 
-export function getAvailabilityPerNeighbourhood() {
+export function getAvailabilityPerNeighbourhood(accessToken) {
     return (dispatch) => {
         fetch(`${process.env.REACT_APP_API_ADRESS}/availabilityperneighbourhood`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            }
         })
             .then(response => {
                 if (response.status !== 200) {

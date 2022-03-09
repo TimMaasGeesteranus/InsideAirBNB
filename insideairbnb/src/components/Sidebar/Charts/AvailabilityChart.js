@@ -7,6 +7,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { useAuth } from 'oidc-react';
 import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from "react-redux";
@@ -20,7 +21,7 @@ const AvailabilityChart = (props) => {
 
     useEffect(() => {
         async function get() {
-            await props.getData();
+            await props.getData(props.token);
         }
 
         get();
