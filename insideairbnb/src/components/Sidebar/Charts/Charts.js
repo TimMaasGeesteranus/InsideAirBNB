@@ -18,7 +18,11 @@ const Charts = (props) => {
 
     return (
         <div>
-            <button onClick={() => console.table(auth)}>klik</button>
+            <button onClick={() => console.log(auth.userData.access_token)}>accesToken</button>
+            <button onClick={() => console.log(auth.userData.id_token)}>IDtoken</button>
+            <button onClick={() => console.log(auth)}>auth</button>
+
+
 
             <div className="mediumText bold">
                 Availability

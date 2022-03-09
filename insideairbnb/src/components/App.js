@@ -11,9 +11,10 @@ function App() {
     clientSecret: "SuperSecretPassword",
     automaticSilentRenew: true,
     responseType: 'code',
-    scope: "openid profile",
+    scope: "openid profile roles", 
     redirectUri: 'http://localhost:3000',
     authority: 'https://localhost:3004',
+    loadUserInfo: true,
     onBeforeSignIn: () => {
       console.log("before");
     },

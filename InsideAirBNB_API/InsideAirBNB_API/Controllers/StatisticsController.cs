@@ -18,7 +18,7 @@ namespace InsideAirBNB_API.Controllers
             _neighbourhoodRepository = neighbourhoodRepository;
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpGet("/priceperneighbourhood")]
         public IActionResult GetPricePerNeighbourhood()
         {

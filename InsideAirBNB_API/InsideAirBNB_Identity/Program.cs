@@ -27,6 +27,7 @@ builder.Services.AddIdentityServer()
     .AddTestUsers(Config.Users)
     .AddDeveloperSigningCredential();
 
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

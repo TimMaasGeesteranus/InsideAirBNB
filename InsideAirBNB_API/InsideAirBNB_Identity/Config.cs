@@ -13,7 +13,7 @@ namespace InsideAirBNB_Identity
         {
             get
             {
-            
+
                 var address = new
                 {
                     street_address = "One Hacker Way",
@@ -70,8 +70,8 @@ namespace InsideAirBNB_Identity
             new IdentityResources.Profile(),
             new IdentityResource
             {
-                Name = "role",
-                UserClaims = new List<string> {"role"}
+                Name = "roles",
+                UserClaims = new []{JwtClaimTypes.Role }
             }
         };
 
@@ -83,11 +83,11 @@ namespace InsideAirBNB_Identity
 
         public static IEnumerable<ApiResource> ApiResources => new[]
         {
-            new ApiResource("weatherapi")
+            new ApiResource("weatherapi", new [] {JwtClaimTypes.Role })
             {
                 Scopes = new List<string> {"weatherapi.read", "weatherapi.write"},
                 ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
-                UserClaims = new List<string> {"role"}
+                UserClaims = new List<string> {"roles"},
             }
         };
 
@@ -105,7 +105,7 @@ namespace InsideAirBNB_Identity
                 AllowAccessTokensViaBrowser = true,
                 ClientSecrets = {new Secret("SuperSecretPassword".Sha256())},
 
-                AllowedScopes = {"weatherapi.read", "weatherapi.write"}
+                AllowedScopes = {"weatherapi.read", "weatherapi.write", "role", "roles"}
             },
 
             // the React App
@@ -114,7 +114,6 @@ namespace InsideAirBNB_Identity
                 ClientId = "interactive",
                 ClientSecrets = {new Secret("SuperSecretPassword".Sha256())},
 
-                //AllowedGrantTypes = GrantTypes.ClientCredentials,
                 AllowedGrantTypes = GrantTypes.Code,
 
                 AllowedCorsOrigins = {"http://localhost:3000" },
@@ -124,7 +123,8 @@ namespace InsideAirBNB_Identity
                 PostLogoutRedirectUris = {"https://localhost:5444/signout-callback-oidc"},
 
                 AllowOfflineAccess = true,
-                AllowedScopes = {"openid", "profile", "weatherapi.read"},
+                AlwaysIncludeUserClaimsInIdToken = true,
+                AllowedScopes = { "openid", "profile", "weatherapi.read", "role", "roles" },
                 RequirePkce = true,
                 RequireConsent = true,
                 AllowPlainTextPkce = false
