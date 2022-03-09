@@ -18,25 +18,25 @@ const Charts = (props) => {
 
     return (
         <div>
-            <button onClick={() => console.log(auth.userData.access_token)}>accesToken</button>
-            <button onClick={() => console.log(auth.userData.id_token)}>IDtoken</button>
-            <button onClick={() => console.log(auth)}>auth</button>
-
-
-
             <div className="mediumText bold">
                 Availability
             </div>
             <AvailabilityChart token={auth.userData.access_token} />
 
             <br />
-            <hr />
-            <br />
 
-            <div className="mediumText bold">
-                Price 
-            </div>
-            <PriceChart token={auth.userData.access_token} />
+
+            {(auth.userData.profile.role === "admin") &&
+                <div>
+                    <hr />
+                    <br />
+
+                    <div className="mediumText bold">
+                        Price
+                    </div>
+                    <PriceChart token={auth.userData.access_token} />
+                </div>
+            }
 
         </div>
     )

@@ -83,11 +83,11 @@ namespace InsideAirBNB_Identity
 
         public static IEnumerable<ApiResource> ApiResources => new[]
         {
-            new ApiResource("weatherapi", new [] {JwtClaimTypes.Role })
+            new ApiResource("weatherapi", "weatherapi", new [] {JwtClaimTypes.Role })
             {
                 Scopes = new List<string> {"weatherapi.read", "weatherapi.write"},
                 ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
-                UserClaims = new List<string> {"roles"},
+                UserClaims = new [] {JwtClaimTypes.Role},
             }
         };
 

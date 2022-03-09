@@ -15,6 +15,7 @@ function App() {
     redirectUri: 'http://localhost:3000',
     authority: 'https://localhost:3004',
     loadUserInfo: true,
+    autoSignIn: false,
     onBeforeSignIn: () => {
       console.log("before");
     },
