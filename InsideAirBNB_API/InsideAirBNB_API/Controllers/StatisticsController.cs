@@ -1,5 +1,6 @@
 ﻿using InsideAirBNB_API.Repositories;
 using InsideAirBNB_API.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsideAirBNB_API.Controllers
@@ -17,6 +18,7 @@ namespace InsideAirBNB_API.Controllers
             _neighbourhoodRepository = neighbourhoodRepository;
         }
 
+        [Authorize]
         [HttpGet("/priceperneighbourhood")]
         public IActionResult GetPricePerNeighbourhood()
         {
@@ -32,6 +34,7 @@ namespace InsideAirBNB_API.Controllers
             return Ok(results);
         }
 
+        [Authorize]
         [HttpGet("/availabilityperneighbourhood")]
         public IActionResult GetAvailabilityPerNeighbourhood()
         {

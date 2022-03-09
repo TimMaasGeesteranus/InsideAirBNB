@@ -18,11 +18,12 @@ const Charts = (props) => {
 
     return (
         <div>
+            <button onClick={() => console.table(auth)}>klik</button>
 
             <div className="mediumText bold">
                 Availability
             </div>
-            <AvailabilityChart />
+            <AvailabilityChart token={auth.userData.access_token} />
 
             <br />
             <hr />
@@ -31,7 +32,7 @@ const Charts = (props) => {
             <div className="mediumText bold">
                 Price 
             </div>
-            <PriceChart />
+            <PriceChart token={auth.userData.access_token} />
 
         </div>
     )

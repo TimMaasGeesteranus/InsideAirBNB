@@ -20,7 +20,7 @@ const PriceChart = (props) => {
 
     useEffect(() => {
         async function get() {
-            await props.getData();
+            await props.getData(props.token);
         }
 
         get();
