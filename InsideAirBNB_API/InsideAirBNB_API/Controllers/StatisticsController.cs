@@ -23,12 +23,19 @@ namespace InsideAirBNB_API.Controllers
         public IActionResult GetPricePerNeighbourhood()
         {
             var results = new Dictionary<string, double>();
-
-            var neighbourhoods = _neighbourhoodRepository.GetAll();
-            foreach (var neighbourhood in neighbourhoods)
+            try
             {
-                var price = _neighbourhoodRepository.GetAvgPricePerNeighbourhood(neighbourhood);
-                results.Add(neighbourhood, Math.Round(price, 2));
+
+                var neighbourhoods = _neighbourhoodRepository.GetAll();
+                foreach (var neighbourhood in neighbourhoods)
+                {
+                    var price = _neighbourhoodRepository.GetAvgPricePerNeighbourhood(neighbourhood);
+                    results.Add(neighbourhood, Math.Round(price, 2));
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
             return Ok(results);
@@ -40,11 +47,19 @@ namespace InsideAirBNB_API.Controllers
         {
             var results = new Dictionary<string, double>();
 
-            var neighbourhoods = _neighbourhoodRepository.GetAll();
-            foreach (var neighbourhood in neighbourhoods)
+            try
             {
-                var availability = _neighbourhoodRepository.GetAvgAvailabilityPerNeighbourhood(neighbourhood);
-                results.Add(neighbourhood, Math.Round(availability, 2));
+
+                var neighbourhoods = _neighbourhoodRepository.GetAll();
+                foreach (var neighbourhood in neighbourhoods)
+                {
+                    var availability = _neighbourhoodRepository.GetAvgAvailabilityPerNeighbourhood(neighbourhood);
+                    results.Add(neighbourhood, Math.Round(availability, 2));
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
             }
 
             return Ok(results);
