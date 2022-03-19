@@ -27,13 +27,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IListingRepository, ListingRepository>();
 builder.Services.AddScoped<INeighbourhoodRepository, NeighbourhoodRepository>();
 
-
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "InsideAirBNBRedis.redis.cache.windows.net:6380,password=0AkhFrdzXc7HU7HhNXgsAr8DqMXDhfESaAzCaGAygVs=,ssl=True,abortConnect=False";
+});
 
 builder.Services.AddAuthentication("Bearer")
     .AddIdentityServerAuthentication("Bearer", options =>
     {
         options.ApiName = "weatherapi";
-        options.Authority = "https://localhost:3004";
+        options.Authority = "https://insideairbnbidentity20220314204820.azurewebsites.net/";
         options.LegacyAudienceValidation = true;
     });
 
@@ -41,6 +44,13 @@ builder.Services.AddDbContext<AppDbContext>((DbContextOptionsBuilder options) =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("InsideAirBNB"));
 });
+
+builder.Services.AddMemoryCache();
+builder.Services.AddMiniProfiler(options =>
+{
+    options.RouteBasePath = "/profiler";
+    options.ColorScheme = StackExchange.Profiling.ColorScheme.Dark;
+}).AddEntityFramework();
 
 var app = builder.Build();
 
@@ -50,6 +60,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiniProfiler();
 
 app.UseHttpsRedirection();
 

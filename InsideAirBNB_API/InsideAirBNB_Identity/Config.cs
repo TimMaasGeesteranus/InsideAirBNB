@@ -116,9 +116,9 @@ namespace InsideAirBNB_Identity
 
                 AllowedGrantTypes = GrantTypes.Code,
 
-                AllowedCorsOrigins = {"http://localhost:3000" },
+                AllowedCorsOrigins = {"https://insideairbnbreactapp.azurewebsites.net" },
 
-                RedirectUris = {"http://localhost:3000"},
+                RedirectUris = {"https://insideairbnbreactapp.azurewebsites.net"},
                 FrontChannelLogoutUri = "https://localhost:5444/signout-oidc",
                 PostLogoutRedirectUris = {"https://localhost:5444/signout-callback-oidc"},
 
