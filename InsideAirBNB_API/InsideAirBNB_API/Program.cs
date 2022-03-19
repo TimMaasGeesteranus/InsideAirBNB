@@ -33,7 +33,7 @@ builder.Services.AddAuthentication("Bearer")
     .AddIdentityServerAuthentication("Bearer", options =>
     {
         options.ApiName = "weatherapi";
-        options.Authority = "https://localhost:3004";
+        options.Authority = "https://insideairbnbidentity20220314204820.azurewebsites.net/";
         options.LegacyAudienceValidation = true;
     });
 

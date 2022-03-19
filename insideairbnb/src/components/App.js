@@ -11,9 +11,9 @@ function App() {
     clientSecret: "SuperSecretPassword",
     automaticSilentRenew: true,
     responseType: 'code',
-    scope: "openid profile roles", 
-    redirectUri: 'http://localhost:3000',
-    authority: 'https://localhost:3004',
+    scope: "openid profile roles",
+    redirectUri: 'https://insideairbnbreactapp.azurewebsites.net',
+    authority: 'https://insideairbnbidentity20220314204820.azurewebsites.net/',
     loadUserInfo: true,
     autoSignIn: false,
     onBeforeSignIn: () => {
@@ -26,7 +26,6 @@ function App() {
       console.log("logout");
     },
   }
-
 
   return (
     <div className="App">

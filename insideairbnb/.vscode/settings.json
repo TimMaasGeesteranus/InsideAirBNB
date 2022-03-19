@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/807dbb93-e301-40d4-af71-2447af744918/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/insideAirBNBReactApp",
+    "appService.deploySubpath": "."
+}
