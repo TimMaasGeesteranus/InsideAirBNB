@@ -42,6 +42,13 @@ builder.Services.AddDbContext<AppDbContext>((DbContextOptionsBuilder options) =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("InsideAirBNB"));
 });
 
+builder.Services.AddMemoryCache();
+builder.Services.AddMiniProfiler(options =>
+{
+    options.RouteBasePath = "/profiler";
+    options.ColorScheme = StackExchange.Profiling.ColorScheme.Dark;
+}).AddEntityFramework();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -50,6 +57,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiniProfiler();
 
 app.UseHttpsRedirection();
 
