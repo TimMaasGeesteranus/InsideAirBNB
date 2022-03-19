@@ -27,7 +27,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IListingRepository, ListingRepository>();
 builder.Services.AddScoped<INeighbourhoodRepository, NeighbourhoodRepository>();
 
-
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost:6379";
+});
 
 builder.Services.AddAuthentication("Bearer")
     .AddIdentityServerAuthentication("Bearer", options =>
