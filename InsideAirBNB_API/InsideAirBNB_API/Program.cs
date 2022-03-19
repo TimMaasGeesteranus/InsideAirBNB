@@ -29,7 +29,7 @@ builder.Services.AddScoped<INeighbourhoodRepository, NeighbourhoodRepository>();
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = "localhost:6379";
+    options.Configuration = "InsideAirBNBRedis.redis.cache.windows.net:6380,password=0AkhFrdzXc7HU7HhNXgsAr8DqMXDhfESaAzCaGAygVs=,ssl=True,abortConnect=False";
 });
 
 builder.Services.AddAuthentication("Bearer")

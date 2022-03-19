@@ -50,14 +50,23 @@ namespace InsideAirBNB_API.Controllers
             }
             else
             {
-                listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood).Take(50);
-                serializedData = JsonConvert.SerializeObject(listings);
-                encodedData = Encoding.UTF8.GetBytes(serializedData);
-                var options = new DistributedCacheEntryOptions()
-                    .SetSlidingExpiration(TimeSpan.FromMinutes(5))
-                    .SetAbsoluteExpiration(DateTime.Now.AddHours(6));
+                try
+                {
+                    listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood).Take(50);
+                    serializedData = JsonConvert.SerializeObject(listings);
+                    encodedData = Encoding.UTF8.GetBytes(serializedData);
+                    var options = new DistributedCacheEntryOptions()
+                        .SetSlidingExpiration(TimeSpan.FromMinutes(5))
+                        .SetAbsoluteExpiration(DateTime.Now.AddHours(6));
 
-                await distributedCache.SetAsync(cacheKey, encodedData, options);
+                    await distributedCache.SetAsync(cacheKey, encodedData, options);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+
             }
             return Ok(listings);
         }
@@ -82,7 +91,7 @@ namespace InsideAirBNB_API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetAveragesByListingId(string id)
         {
-            var listing = _listingRepository.GetListingById(Int32.Parse(id));         
+            var listing = _listingRepository.GetListingById(Int32.Parse(id));
             return Ok(listing);
         }
     }
