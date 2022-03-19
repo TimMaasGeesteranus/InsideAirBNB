@@ -12,7 +12,6 @@ namespace InsideAirBNB_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    //[Authorize]
     public class ListingController : ControllerBase
     {
         private readonly IListingRepository _listingRepository;
@@ -30,7 +29,6 @@ namespace InsideAirBNB_API.Controllers
             var listings = _listingRepository.GetAll();
             return Ok(listings);
         }
-
 
         [HttpGet("/minimal/{neighbourhood}")]
         public async Task<IActionResult> GetMinimalInfo(string neighbourhood)
@@ -52,7 +50,7 @@ namespace InsideAirBNB_API.Controllers
             {
                 try
                 {
-                    listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood).Take(50);
+                    listings = _listingRepository.GetMinimalInfoByNeighbourhood(neighbourhood);
                     serializedData = JsonConvert.SerializeObject(listings);
                     encodedData = Encoding.UTF8.GetBytes(serializedData);
                     var options = new DistributedCacheEntryOptions()
@@ -65,8 +63,6 @@ namespace InsideAirBNB_API.Controllers
                 {
                     return BadRequest(ex.Message);
                 }
-
-
             }
             return Ok(listings);
         }
@@ -76,16 +72,6 @@ namespace InsideAirBNB_API.Controllers
         {
             var listings = _listingRepository.GetFiltered(filters);
             return Ok(listings);
-        }
-
-        [Authorize]
-        [HttpGet("/test")]
-        public IActionResult GetTest()
-        {
-            Listing listing = new();
-            listing.Description = "A very beatiful place to live";
-            listing.Name = "My beatiful house";
-            return Ok(listing);
         }
 
         [HttpGet("{id}")]
